@@ -32,4 +32,20 @@ export class UserService {
   async findAll(): Promise<User[]> {
     return this.userRepo.find();
   }
+
+  async updateRole(id: string, role: UserRole): Promise<User | null> {
+    const user = await this.userRepo.findOneBy({ id });
+    if (!user) return null;
+    user.role = role;
+    return this.userRepo.save(user);
+  }
+
+  async deleteUser(id: string): Promise<boolean> {
+    const result = await this.userRepo.softDelete(id);
+    return (
+      result.affected !== null &&
+      result.affected !== undefined &&
+      result.affected > 0
+    );
+  }
 }
