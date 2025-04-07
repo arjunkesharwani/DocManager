@@ -7,6 +7,7 @@ import { UserModule } from './user/user.module';
 import { User } from './user/user.entity';
 import { AuthModule } from './auth/auth.module';
 import { DocumentModule } from './document/document.module';
+import { Document } from './document/document.entity';
 
 @Module({
   imports: [
@@ -20,7 +21,7 @@ import { DocumentModule } from './document/document.module';
       username: process.env.DB_USERNAME || 'postgres',
       password: process.env.DB_PASSWORD || 'password',
       database: process.env.DB_NAME || 'test',
-      entities: [User],
+      entities: [User, Document],
       synchronize: true,
     }),
     UserModule,
