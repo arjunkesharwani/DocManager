@@ -1,3 +1,4 @@
+import { Document } from 'src/document/document.entity';
 import {
   Entity,
   PrimaryGeneratedColumn,
@@ -5,6 +6,7 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   DeleteDateColumn,
+  OneToMany,
 } from 'typeorm';
 
 export enum UserRole {
@@ -39,4 +41,7 @@ export class User {
 
   @DeleteDateColumn()
   deletedAt: Date;
+
+  @OneToMany(() => Document, (doc) => doc.owner)
+  documents: Document[];
 }
