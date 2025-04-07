@@ -8,6 +8,7 @@ import { User } from './user/user.entity';
 import { AuthModule } from './auth/auth.module';
 import { DocumentModule } from './document/document.module';
 import { Document } from './document/document.entity';
+import { IngestionModule } from './ingestion/ingestion.module';
 
 @Module({
   imports: [
@@ -27,6 +28,7 @@ import { Document } from './document/document.entity';
     UserModule,
     AuthModule,
     DocumentModule,
+    IngestionModule,
   ],
   controllers: [AppController],
   providers: [AppService],
