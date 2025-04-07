@@ -8,12 +8,15 @@ import {
   UseGuards,
   ParseIntPipe,
   NotFoundException,
+  ValidationPipe,
+  UsePipes,
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { UserRole } from './user.entity';
 import { AuthGuard } from '@nestjs/passport';
 import { RolesGuard } from '../common/roles.guard';
 import { Roles } from '../common/roles.decorator';
+import { UpdateRoleDto } from './dto/update-role.dto';
 
 @Controller('users')
 @UseGuards(AuthGuard('jwt'), RolesGuard)
@@ -28,7 +31,12 @@ export class UserController {
 
   @Patch(':id/role')
   @Roles(UserRole.ADMIN)
-  async updateUserRole(@Param('id') id: string, @Body('role') role: UserRole) {
+  @UsePipes(new ValidationPipe({ transform: true }))
+  async updateUserRole(
+    @Param('id') id: string,
+    @Body() updateRoleDto: UpdateRoleDto,
+  ) {
+    const { role } = updateRoleDto;
     const updated = await this.userService.updateRole(id, role);
     if (!updated) throw new NotFoundException('User not found');
     return updated;
