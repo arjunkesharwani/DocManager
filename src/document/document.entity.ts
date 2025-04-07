@@ -1,3 +1,4 @@
+import { IngestionProcess } from 'src/ingestion/ingestion-process.entity';
 import { User } from 'src/user/user.entity';
 import {
   Entity,
@@ -7,6 +8,7 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   DeleteDateColumn,
+  OneToMany,
 } from 'typeorm';
 
 @Entity()
@@ -34,4 +36,7 @@ export class Document {
 
   @ManyToOne(() => User, (user) => user.documents)
   owner: User;
+
+  @OneToMany(() => IngestionProcess, (ingestion) => ingestion.document)
+  ingestions: IngestionProcess[];
 }

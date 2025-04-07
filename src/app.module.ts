@@ -9,6 +9,7 @@ import { AuthModule } from './auth/auth.module';
 import { DocumentModule } from './document/document.module';
 import { Document } from './document/document.entity';
 import { IngestionModule } from './ingestion/ingestion.module';
+import { IngestionProcess } from './ingestion/ingestion-process.entity';
 
 @Module({
   imports: [
@@ -22,7 +23,7 @@ import { IngestionModule } from './ingestion/ingestion.module';
       username: process.env.DB_USERNAME || 'postgres',
       password: process.env.DB_PASSWORD || 'password',
       database: process.env.DB_NAME || 'test',
-      entities: [User, Document],
+      entities: [User, Document, IngestionProcess],
       synchronize: true,
     }),
     UserModule,

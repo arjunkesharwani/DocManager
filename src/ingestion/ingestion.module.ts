@@ -2,9 +2,16 @@ import { Module } from '@nestjs/common';
 import { IngestionService } from './ingestion.service';
 import { IngestionController } from './ingestion.controller';
 import { HttpModule } from '@nestjs/axios';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { IngestionProcess } from './ingestion-process.entity';
+import { User } from 'src/user/user.entity';
+import { Document } from 'src/document/document.entity';
 
 @Module({
-  imports: [HttpModule],
+  imports: [
+    TypeOrmModule.forFeature([IngestionProcess, User, Document]),
+    HttpModule,
+  ],
   controllers: [IngestionController],
   providers: [IngestionService],
 })
