@@ -11,7 +11,7 @@ import { TriggerIngestionDto } from './dto/trigger-ingestion.dto';
 import { IngestionService } from './ingestion.service';
 import { Request } from 'express';
 import { AuthGuard } from '@nestjs/passport';
-import { User } from 'src/user/user.entity';
+import { User } from '../user/user.entity';
 
 @Controller('ingestion')
 @UseGuards(AuthGuard('jwt'))

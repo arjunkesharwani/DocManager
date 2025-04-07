@@ -18,7 +18,7 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import { AuthGuard } from '@nestjs/passport';
 import { DocumentService } from './document.service';
 import { multerConfig } from './multer.config';
-import { User, UserRole } from 'src/user/user.entity';
+import { User, UserRole } from '../user/user.entity';
 
 @Controller('documents')
 @UseGuards(AuthGuard('jwt'))

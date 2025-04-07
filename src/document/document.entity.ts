@@ -1,5 +1,5 @@
-import { IngestionProcess } from 'src/ingestion/ingestion-process.entity';
-import { User } from 'src/user/user.entity';
+import { IngestionProcess } from '../ingestion/ingestion-process.entity';
+import { User } from '../user/user.entity';
 import {
   Entity,
   PrimaryGeneratedColumn,

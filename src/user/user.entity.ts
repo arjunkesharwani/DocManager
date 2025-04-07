@@ -1,4 +1,4 @@
-import { Document } from 'src/document/document.entity';
+import { Document } from '../document/document.entity';
 import {
   Entity,
   PrimaryGeneratedColumn,

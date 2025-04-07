@@ -4,7 +4,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { firstValueFrom } from 'rxjs';
 import { IngestionProcess, status } from './ingestion-process.entity';
 import { Repository } from 'typeorm';
-import { Document } from 'src/document/document.entity';
+import { Document } from '../document/document.entity';
 
 @Injectable()
 export class IngestionService {

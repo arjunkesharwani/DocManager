@@ -4,8 +4,8 @@ import { IngestionController } from './ingestion.controller';
 import { HttpModule } from '@nestjs/axios';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { IngestionProcess } from './ingestion-process.entity';
-import { User } from 'src/user/user.entity';
-import { Document } from 'src/document/document.entity';
+import { User } from '../user/user.entity';
+import { Document } from '../document/document.entity';
 
 @Module({
   imports: [
