@@ -1,4 +1,8 @@
-import { Injectable, ForbiddenException } from '@nestjs/common';
+import {
+  Injectable,
+  ForbiddenException,
+  NotFoundException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Document } from './document.entity';
 import { Repository } from 'typeorm';
@@ -36,7 +40,9 @@ export class DocumentService {
 
   async update(id: string, description: string, user: User) {
     const doc = await this.findOne(id);
-    if (!doc) return null;
+    if (!doc) {
+      throw new NotFoundException('Document not found');
+    }
     if (doc.owner.id !== user.id && user.role !== UserRole.ADMIN) {
       throw new ForbiddenException();
     }
