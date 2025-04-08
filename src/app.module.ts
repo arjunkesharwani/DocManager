@@ -10,11 +10,21 @@ import { DocumentModule } from './document/document.module';
 import { Document } from './document/document.entity';
 import { IngestionModule } from './ingestion/ingestion.module';
 import { IngestionProcess } from './ingestion/ingestion-process.entity';
+import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
+import { APP_GUARD } from '@nestjs/core';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
+    }),
+    ThrottlerModule.forRoot({
+      throttlers: [
+        {
+          ttl: 60000,
+          limit: 10,
+        },
+      ],
     }),
     TypeOrmModule.forRoot({
       type: 'postgres',
@@ -32,6 +42,12 @@ import { IngestionProcess } from './ingestion/ingestion-process.entity';
     IngestionModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [
+    {
+      provide: APP_GUARD,
+      useClass: ThrottlerGuard,
+    },
+    AppService,
+  ],
 })
 export class AppModule {}
